@@ -11,5 +11,8 @@
   "devDependencies": {
     "typescript": "^5.0.2",
     "vite": "^4.3.2"
+  },
+  "dependencies": {
+    "wasmMVG": "https://github.com/wakewakame/wasmMVG/releases/download/0.0.2/wasmMVG-0.0.2.tgz"
   }
 }
