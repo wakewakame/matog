@@ -2,10 +2,9 @@ import Model from './model'
 import wasmMVG, { type Module } from 'wasmMVG'
 
 class MatogRoot extends HTMLElement {
-  private readonly model: Model
   constructor () {
     super()
-    this.model = new Model()
+    const model = new Model()
     this.style.display = 'block'
     const shadow = this.attachShadow({ mode: 'closed' })
 
@@ -41,11 +40,27 @@ class MatogRoot extends HTMLElement {
         })())
         center.appendChild((() => {
           const button = document.createElement('button')
-          this.model.setHook((count: number) => {
+          model.setHook((count: number) => {
             button.textContent = `count ${count}`
           })
           button.addEventListener('click', () => {
-            this.model.countUp()
+            model.countUp()
+          })
+          return button
+        })())
+        center.appendChild((() => {
+          const button = document.createElement('button')
+          button.textContent = 'undo'
+          button.addEventListener('click', () => {
+            model.undo()
+          })
+          return button
+        })())
+        center.appendChild((() => {
+          const button = document.createElement('button')
+          button.textContent = 'redo'
+          button.addEventListener('click', () => {
+            model.redo()
           })
           return button
         })())
